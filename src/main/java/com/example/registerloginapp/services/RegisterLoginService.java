@@ -1,5 +1,7 @@
 package com.example.registerloginapp.services;
 
+import com.example.registerloginapp.exception.RegisterRequestException;
+import com.example.registerloginapp.exception.RegisterRequestHandling;
 import com.example.registerloginapp.models.ERole;
 import com.example.registerloginapp.models.Role;
 import com.example.registerloginapp.models.User;
@@ -45,10 +47,14 @@ public class RegisterLoginService {
     @Autowired
     JwtUtils jwtUtils;
 
+    @Autowired
+    RegisterRequestHandling registerRequestHandling;
+
     public RegisterLoginService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
+
     public ResponseEntity<?> authenticateUser(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -68,17 +74,13 @@ public class RegisterLoginService {
                 roles,
                 jwt));
     }
-    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest){
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
-        }
 
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+    public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) throws RegisterRequestException {
+
+        if(registerRequestHandling.checkRequestRequirements(signUpRequest) != null){
             return ResponseEntity
                     .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+                    .body(new MessageResponse(registerRequestHandling.checkRequestRequirements(signUpRequest)));
         }
 
         // Create new user's account
@@ -119,5 +121,10 @@ public class RegisterLoginService {
         userRepository.save(user);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+    }
+
+    // return all users
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 }

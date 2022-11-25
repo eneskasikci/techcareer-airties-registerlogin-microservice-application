@@ -1,6 +1,6 @@
 package com.example.registerloginapp.ui.impl;
 
-import com.example.registerloginapp.ApiError.ApiResult;
+import com.example.registerloginapp.errors.ApiResult;
 import com.example.registerloginapp.apiservices.IDiaryAppService;
 import com.example.registerloginapp.security.services.UserDetailsImpl;
 import com.example.registerloginapp.ui.IDiaryApi;

@@ -1,6 +1,6 @@
 package com.example.registerloginapp.ui;
 
-import com.example.registerloginapp.ApiError.ApiResult;
+import com.example.registerloginapp.errors.ApiResult;
 import com.google.gson.JsonElement;
 
 public interface IDiaryApi {

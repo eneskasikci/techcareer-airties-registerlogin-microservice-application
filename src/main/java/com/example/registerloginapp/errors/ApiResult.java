@@ -1,4 +1,4 @@
-package com.example.registerloginapp.ApiError;
+package com.example.registerloginapp.errors;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
