@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @RequiredArgsConstructor
 @Log4j2
@@ -29,6 +28,11 @@ public class DiaryAppService implements IDiaryAppService {
     @Override
     public JsonElement deleteUserPost(JsonElement jsonElement) {
         return RetrofitCommonGenerics.retrofitGenerics(iDiaryServiceRequest.deletePostIfUserIsTheOwner(jsonElement));
+    }
+
+    @Override
+    public JsonElement listDiaryPostFromUser(String username) {
+        return RetrofitCommonGenerics.retrofitGenerics(iDiaryServiceRequest.getAllDiaryPostsFromUser(username));
     }
 
 }
