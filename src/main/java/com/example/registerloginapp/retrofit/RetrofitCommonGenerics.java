@@ -13,7 +13,8 @@ public class RetrofitCommonGenerics {
             //retrofit
             Response<T> response = request.execute();
             if (!response.isSuccessful()) {
-                log.error("Retrofit Product Failed statusCode:{} and reason{}", response.code(), response.errorBody().string());
+                assert response.errorBody() != null;
+                log.error("Request Failed: {}", response.errorBody().string());
             }
             return response.body();
         } catch (IOException ioException) {

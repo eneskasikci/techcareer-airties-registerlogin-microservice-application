@@ -127,4 +127,8 @@ public class RegisterLoginService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+
+    public void deleteEveryUser() {
+        userRepository.deleteAll();
+    }
 }

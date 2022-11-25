@@ -13,4 +13,5 @@ public interface IDiaryAppService {
     //LIST
     JsonElement listDiaryPostFromUser(String username);
 
+    JsonElement updateDiaryPost(JsonElement jsonElement);
 }

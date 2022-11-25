@@ -30,9 +30,15 @@ public class DiaryAppService implements IDiaryAppService {
         return RetrofitCommonGenerics.retrofitGenerics(iDiaryServiceRequest.deletePostIfUserIsTheOwner(jsonElement));
     }
 
+    // LIST
     @Override
     public JsonElement listDiaryPostFromUser(String username) {
         return RetrofitCommonGenerics.retrofitGenerics(iDiaryServiceRequest.getAllDiaryPostsFromUser(username));
+    }
+
+    @Override
+    public JsonElement updateDiaryPost(JsonElement jsonElement) {
+        return RetrofitCommonGenerics.retrofitGenerics(iDiaryServiceRequest.updateDiaryPost(jsonElement));
     }
 
 }

@@ -10,8 +10,12 @@ public interface IDiaryApi {
     ApiResult savePostToApi(JsonElement jsonElement);
 
     // DELETE
-    ApiResult deletePostIfUserIsTheOwner(JsonElement jsonElement);
+    ResponseEntity<?> deletePostIfUserIsTheOwner(JsonElement jsonElement);
 
     // LIST
     ResponseEntity<?> listDiaryPostFromUser(String username);
+
+    // UPDATE
+    // Post of the user who is logged-in
+    ResponseEntity<?> updateDiaryPostFromRequest(JsonElement jsonElement);
 }

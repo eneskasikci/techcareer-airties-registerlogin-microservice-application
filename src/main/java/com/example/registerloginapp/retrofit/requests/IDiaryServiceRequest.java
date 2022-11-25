@@ -10,10 +10,14 @@ public interface IDiaryServiceRequest {
     @POST("/api/diaryApp/posts/createDiaryPost")
     Call<JsonElement> dailySave(@Body JsonElement jsonElement);
 
+    //LIST Post
     @GET("/api/diaryApp/posts/getAllPostsFromUser/{username}")
     Call<JsonElement> getAllDiaryPostsFromUser(@Path("username") String username);
+
     //DELETE
     @HTTP(method = "DELETE", path = "/api/diaryApp/posts/deletePostIfUserIsOwner", hasBody = true)
     Call<JsonElement> deletePostIfUserIsTheOwner(@Body JsonElement jsonElement);
 
+    @PUT("/api/diaryApp/posts/updatePostIfUserIsOwner")
+    Call<JsonElement> updateDiaryPost(@Body JsonElement jsonElement);
 }

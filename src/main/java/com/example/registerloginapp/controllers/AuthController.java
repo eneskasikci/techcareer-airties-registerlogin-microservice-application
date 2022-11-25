@@ -40,6 +40,12 @@ public class AuthController {
     public List<User> getAllUsers() {
         return registerLoginService.getAllUsers();
     }
+
+    @DeleteMapping("/users")
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteEveryUser() {
+        registerLoginService.deleteEveryUser();
+    }
 }
 
 
