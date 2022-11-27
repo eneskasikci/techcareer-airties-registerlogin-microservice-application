@@ -1,19 +1,17 @@
 package com.example.registerloginapp.ui.impl;
 
+import com.example.registerloginapp.security.services.UserDetailsImpl;
 import com.example.registerloginapp.ui.IBlogApi;
 
 import com.example.registerloginapp.apiservices.IBlogAppService;
 import com.example.registerloginapp.errors.ApiResult;
-import com.example.registerloginapp.retrofit.RetrofitCommonGenerics;
-import com.example.registerloginapp.security.services.UserDetailsImpl;
-import com.example.registerloginapp.ui.IBlogApi;
 import com.google.gson.JsonElement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -48,18 +46,15 @@ public class BlogApiImpl implements IBlogApi {
 
     @Override
     @PostMapping("/createBlogPost")
-    public ApiResult savePostToApi(JsonElement jsonElement) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<?> deletePostIfUserIsTheOwner(JsonElement jsonElement) {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<?> listBlogPostFromUser(String username) {
-        return null;
+    public ResponseEntity<?> savePostToApi(@RequestBody JsonElement jsonElement) {
+        // get logged-in users username and compare it with the post request username.
+        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(userDetails.getUsername().equals(jsonElement.getAsJsonObject().get("request_userName").getAsString())){
+            blogAppService.createBlogPost(jsonElement);
+            return ResponseEntity.ok("Diary post successfully created.");
+        }else {
+            return ResponseEntity.ok("You can not create a post for another user.");
+        }
     }
 
     @Override
@@ -67,6 +62,25 @@ public class BlogApiImpl implements IBlogApi {
     public ResponseEntity<List<?>> listBlogPosts() {
         return ResponseEntity.ok(blogAppService.getAllBlogPosts());
     }
+
+
+
+    @Override
+    public ResponseEntity<?> deletePostIfUserIsTheOwner(JsonElement jsonElement) {
+        return null;
+    }
+
+    @Override
+    @GetMapping("/seePhoto/{id}")
+    public ResponseEntity<?> seePhoto(@PathVariable Long id) {
+        return ResponseEntity.ok(blogAppService.getPhoto(id));
+    }
+
+    @Override
+    public ResponseEntity<?> listBlogPostFromUser(String username) {
+        return null;
+    }
+
 
     @Override
     public ResponseEntity<?> updateBlogPostFromRequest(JsonElement jsonElement) {

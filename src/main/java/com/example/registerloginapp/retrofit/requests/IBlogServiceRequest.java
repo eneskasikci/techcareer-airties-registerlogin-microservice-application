@@ -28,7 +28,7 @@ public interface IBlogServiceRequest {
 //                                                @Part("request_userName") String userName,
 //                                                @Part("request_blogUserId") Long blogUserId,
 //                                                @Part MultipartFile blogImage);
-        @POST("/api/diaryApp/posts/createBlogPost")
+        @HTTP(method = "POST",path = "/api/blogApp/posts/createBlogPost", hasBody = true)
         Call<JsonElement> createBlogPost(@Body JsonElement jsonElement);
 
         @GET("/api/blogApp/posts/getAllPostsFromUser/{userName}")
@@ -43,6 +43,9 @@ public interface IBlogServiceRequest {
 
         @GET("/api/blogApp/posts/getAllPosts")
         Call<List<JsonElement>> getAllBlogPosts();
+
+        @HTTP(method = "GET",path="/api/blogApp/posts/getImageFromPost/{postId}")
+        Call<JsonElement> getImageFromPost(@Path("postId") Long id);
 
 }
 //    @POST("/api/blogApp/posts/gatewayBlogPostWithImage")
