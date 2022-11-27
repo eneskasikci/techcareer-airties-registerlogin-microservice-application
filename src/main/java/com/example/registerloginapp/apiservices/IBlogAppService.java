@@ -20,4 +20,6 @@ public interface IBlogAppService {
 
     // UPDATE
     JsonElement updateBlogPost(JsonElement jsonElement);
+
+    JsonElement getPhoto(Long id);
 }
