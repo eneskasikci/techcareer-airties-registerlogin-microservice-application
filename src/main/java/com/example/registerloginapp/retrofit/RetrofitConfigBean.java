@@ -1,5 +1,6 @@
 package com.example.registerloginapp.retrofit;
 
+import com.example.registerloginapp.retrofit.requests.IBlogServiceRequest;
 import com.example.registerloginapp.retrofit.requests.IDiaryServiceRequest;
 import com.google.gson.Gson;
 import okhttp3.Credentials;
@@ -49,5 +50,11 @@ public class RetrofitConfigBean {
     @Bean
     public IDiaryServiceRequest diaryServiceRequest(Retrofit.Builder builder, @Value("${diary.app.url}") String dailyBaseUrl){
         return builder.baseUrl(dailyBaseUrl).build().create(IDiaryServiceRequest.class);
+    }
+    ////////////////////////////////////////////////////////////////////////
+    // Blog Service
+    @Bean
+    public IBlogServiceRequest blogServiceRequest(Retrofit.Builder builder, @Value("${blog.app.url}") String blogBaseUrl){
+        return builder.baseUrl(blogBaseUrl).build().create(IBlogServiceRequest.class);
     }
 }
