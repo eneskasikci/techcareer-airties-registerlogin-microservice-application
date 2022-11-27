@@ -17,14 +17,10 @@ public interface IBlogApi {
 //                                       Long blogUserId,
 //                                       MultipartFile blogImage) throws IOException;
     //SAVE
-    ResponseEntity<?> savePostToApi(JsonElement jsonElement);
+    ApiResult savePostToApi(JsonElement jsonElement);
 
     // DELETE
     ResponseEntity<?> deletePostIfUserIsTheOwner(JsonElement jsonElement);
-
-    // Get photo of the blog post
-    ResponseEntity<?> seePhoto(Long id);
-
 
     // LIST
     ResponseEntity<?> listBlogPostFromUser(String username);

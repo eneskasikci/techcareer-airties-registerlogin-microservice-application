@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
 @Log4j2
+
 @Service
 public class DiaryAppService implements IDiaryAppService {
 

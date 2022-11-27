@@ -15,7 +15,7 @@ public class GsonConfigBean {
     //gsonBuilder.create
     @Bean
     public Gson gson(GsonBuilder gsonBuilder){
-        return gsonBuilder.setLenient().create();
+        return gsonBuilder.create();
     }
 
     //GsonHttpMessageConverter

@@ -43,9 +43,4 @@ public class BlogAppService implements IBlogAppService {
     public JsonElement updateBlogPost(JsonElement jsonElement) {
         return RetrofitCommonGenerics.retrofitGenerics(iBlogServiceRequest.updateBlogPost(jsonElement));
     }
-
-    @Override
-    public JsonElement getPhoto(Long id) {
-        return RetrofitCommonGenerics.retrofitGenerics(iBlogServiceRequest.getImageFromPost(id));
-    }
 }
