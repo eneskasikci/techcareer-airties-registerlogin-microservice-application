@@ -3,7 +3,6 @@ package com.example.registerloginapp.errors;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import org.springframework.http.HttpStatus;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
