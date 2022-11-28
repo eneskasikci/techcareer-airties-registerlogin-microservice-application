@@ -3,13 +3,12 @@ version: '3'
 services:
   registerloginapp:
     container_name: registerloginapp.jar
-    image: registerloginapp
     restart: always
     build: ./
     ports:
       - "3333:3333"
     networks:
-      - registerloginapp_diary-network
+      - registerloginapp-network
 networks:
-  registerloginapp_diary-network:
-    external: true
+  registerloginapp-network:
+    driver: bridge
