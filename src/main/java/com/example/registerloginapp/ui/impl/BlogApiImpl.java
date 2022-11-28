@@ -58,17 +58,30 @@ public class BlogApiImpl implements IBlogApi {
     }
 
     @Override
+    public ResponseEntity<?> deletePostIfUserIsTheOwner(JsonElement jsonElement) {
+        return null;
+    }
+
+    @Override
     @GetMapping("/listBlogPosts")
     public ResponseEntity<List<?>> listBlogPosts() {
         return ResponseEntity.ok(blogAppService.getAllBlogPosts());
     }
 
-
-
-    @Override
-    public ResponseEntity<?> deletePostIfUserIsTheOwner(JsonElement jsonElement) {
-        return null;
-    }
+//
+//    @Override
+//    @DeleteMapping("/deleteBlogPost")
+//    public ResponseEntity<?> deletePostIfUserIsTheOwner(JsonElement jsonElement) {
+//        UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if(userDetails.getUsername().equals(jsonElement.getAsJsonObject().get("deletionrequest_userName").getAsString())){
+//            blogAppService.deletePostIfUserIsTheOwner(jsonElement);
+//            return ResponseEntity.ok(
+//                    "If the post ID and the Username you have provided matches in " +
+//                            "the Diary Application, post deleted. If not, nothing happened.");
+//        }else {
+//            return ResponseEntity.ok("You can not delete posts of another user.");
+//        }
+//    }
 
     @Override
     @GetMapping("/seePhoto/{id}")
