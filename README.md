@@ -137,7 +137,7 @@ Create a post at the Diary Application.
         {
              "request_blogTitle" : "post from gate",
              "request_blogContent" : "post from gate",
-             "request_blogUserName" : "eneskasikci",
+             "request_userName" : "eneskasikci",
              "request_blogUserId" : 1
         }
 
