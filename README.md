@@ -8,6 +8,10 @@ Role based user registration. With a JWT token, we can send requests to the Diar
 All the applications have their own databases.
 They all must be running at the same time to work properly.
 
+The app is running in H2 Database by default, but there is a POSTRESQL connection details in the application.properties. To run it on PSQL simply comment out the H2 database and uncomment the PSQL connection details.
+
+Remember to create a database at PgAdmin4 according to the name giving at the URL. It is "register-login-app".
+
 # Installation
 
 Before starting the Register/Login process, when you first run the application, you need to fill the roles table.
