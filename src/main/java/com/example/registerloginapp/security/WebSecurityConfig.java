@@ -61,7 +61,7 @@ public class WebSecurityConfig { // extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
-                .antMatchers("/api/test/**", "/h2-console/**", "/swagger-ui/**","/swagger-resources/**", "/v2/api-docs","/webjars/**","/v3/api-docs").permitAll()
+                .antMatchers("/api/test/**", "/h2-console/**").permitAll()
                 .anyRequest().authenticated();
 
         http.authenticationProvider(authenticationProvider());
