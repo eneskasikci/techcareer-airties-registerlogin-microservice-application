@@ -18,8 +18,11 @@ http://localhost:3333/h2-console
 for the database url you need to enter: jdbc:h2:file:./memory_persist/registerlogin_database
 for the username you need to enter: root, and for the password you need to enter: root
 after that run this query;
+
 INSERT INTO roles (role_name) VALUES ('ROLE_USER');
+
 INSERT INTO roles (role_name) VALUES ('ROLE_MODERATOR');
+
 INSERT INTO roles (role_name) VALUES ('ROLE_ADMIN');
 
 After that you can start the Register/Login process.
