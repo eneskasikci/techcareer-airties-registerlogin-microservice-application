@@ -51,7 +51,7 @@ public class BlogApiImpl implements IBlogApi {
         UserDetailsImpl userDetails = (UserDetailsImpl) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if(userDetails.getUsername().equals(jsonElement.getAsJsonObject().get("request_userName").getAsString())){
             blogAppService.createBlogPost(jsonElement);
-            return ResponseEntity.ok("Diary post successfully created.");
+            return ResponseEntity.ok("Blog post successfully created.");
         }else {
             return ResponseEntity.ok("You can not create a post for another user.");
         }
