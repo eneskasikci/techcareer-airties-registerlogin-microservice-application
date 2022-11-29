@@ -8,6 +8,10 @@ Role based user registration. With a JWT token, we can send requests to the Diar
 All the applications have their own databases.
 They all must be running at the same time to work properly.
 
+The app is running in H2 Database by default, but there is a POSTRESQL connection details in the application.properties. To run it on PSQL simply comment out the H2 database and uncomment the PSQL connection details.
+
+Remember to create a database at PgAdmin4 according to the name giving at the URL. It is "register-login-app".
+
 # Installation
 
 Before starting the Register/Login process, when you first run the application, you need to fill the roles table.
@@ -18,8 +22,11 @@ http://localhost:3333/h2-console
 for the database url you need to enter: jdbc:h2:file:./memory_persist/registerlogin_database
 for the username you need to enter: root, and for the password you need to enter: root
 after that run this query;
+
 INSERT INTO roles (role_name) VALUES ('ROLE_USER');
+
 INSERT INTO roles (role_name) VALUES ('ROLE_MODERATOR');
+
 INSERT INTO roles (role_name) VALUES ('ROLE_ADMIN');
 
 After that you can start the Register/Login process.
@@ -134,7 +141,7 @@ Create a post at the Diary Application.
         {
              "request_blogTitle" : "post from gate",
              "request_blogContent" : "post from gate",
-             "request_blogUserName" : "eneskasikci",
+             "request_userName" : "eneskasikci",
              "request_blogUserId" : 1
         }
 
